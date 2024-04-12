@@ -66,7 +66,7 @@ dallas:
 sensor:
   - platform: dallas
     address: 0xfb233c8209646128
-    name: ${friendly_name}temperature
+    name: ${friendly_name}-temperature
     id: ${friendly_name_id}_temperature
     filters:
       - lambda: return x + id(${friendly_name_id}_dallas_lambda).state;
@@ -296,7 +296,7 @@ sensor:
 
 number:
   - platform: template
-    name: controller-01-temperature-offset
+    name: ${friendly_name}-temperature-offset
     id: ${friendly_name_id}_dallas_lambda
     min_value: -20
     initial_value: 0
@@ -306,7 +306,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-01
+    name: ${friendly_name}-temp-01
     id: ${friendly_name_id}_temp_01
     min_value: 30
     initial_value: 30
@@ -315,7 +315,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-01
+    name: ${friendly_name}-servopos-01
     id: ${friendly_name_id}_servopos_01
     min_value: 0
     initial_value: 0
@@ -325,7 +325,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-02
+    name: ${friendly_name}-temp-02
     id: ${friendly_name_id}_temp_02
     min_value: 30
     initial_value: 32.1
@@ -334,7 +334,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-02
+    name: ${friendly_name}-servopos-02
     id: ${friendly_name_id}_servopos_02
     min_value: 0
     initial_value: 4.5
@@ -344,7 +344,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-03
+    name: ${friendly_name}-temp-03
     id: ${friendly_name_id}_temp_03
     min_value: 30
     initial_value: 34.2
@@ -353,7 +353,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-03
+    name: ${friendly_name}-servopos-03
     id: ${friendly_name_id}_servopos_03
     min_value: 0
     initial_value: 9
@@ -363,7 +363,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-04
+    name: ${friendly_name}-temp-04
     id: ${friendly_name_id}_temp_04
     min_value: 30
     initial_value: 36.3
@@ -372,7 +372,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-04
+    name: ${friendly_name}-servopos-04
     id: ${friendly_name_id}_servopos_04
     min_value: 0
     initial_value: 13.5
@@ -382,7 +382,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-05
+    name: ${friendly_name}-temp-05
     id: ${friendly_name_id}_temp_05
     min_value: 30
     initial_value: 38.4
@@ -391,7 +391,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-05
+    name: ${friendly_name}-servopos-05
     id: ${friendly_name_id}_servopos_05
     min_value: 0
     initial_value: 18
@@ -401,7 +401,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-06
+    name: ${friendly_name}-temp-06
     id: ${friendly_name_id}_temp_06
     min_value: 30
     initial_value: 40.5
@@ -410,7 +410,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-06
+    name: ${friendly_name}-servopos-06
     id: ${friendly_name_id}_servopos_06
     min_value: 0
     initial_value: 22.5
@@ -420,7 +420,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-07
+    name: ${friendly_name}-temp-07
     id: ${friendly_name_id}_temp_07
     min_value: 30
     initial_value: 42.6
@@ -429,7 +429,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-07
+    name: ${friendly_name}-servopos-07
     id: ${friendly_name_id}_servopos_07
     min_value: 0
     initial_value: 27
@@ -439,7 +439,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-08
+    name: ${friendly_name}-temp-08
     id: ${friendly_name_id}_temp_08
     min_value: 30
     initial_value: 44.7
@@ -448,7 +448,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-08
+    name: ${friendly_name}-servopos-08
     id: ${friendly_name_id}_servopos_08
     min_value: 0
     initial_value: 31.5
@@ -458,7 +458,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-09
+    name: ${friendly_name}-temp-09
     id: ${friendly_name_id}_temp_09
     min_value: 30
     initial_value: 46.8
@@ -467,7 +467,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-09
+    name: ${friendly_name}-servopos-09
     id: ${friendly_name_id}_servopos_09
     min_value: 0
     initial_value: 36
@@ -477,7 +477,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-10
+    name: ${friendly_name}-temp-10
     id: ${friendly_name_id}_temp_10
     min_value: 30
     initial_value: 48.9
@@ -486,7 +486,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-10
+    name: ${friendly_name}-servopos-10
     id: ${friendly_name_id}_servopos_10
     min_value: 0
     initial_value: 40.5
@@ -496,7 +496,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-11
+    name: ${friendly_name}-temp-11
     id: ${friendly_name_id}_temp_11
     min_value: 30
     initial_value: 51
@@ -505,7 +505,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-11
+    name: ${friendly_name}-servopos-11
     id: ${friendly_name_id}_servopos_11
     min_value: 0
     initial_value: 45
@@ -515,7 +515,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-12
+    name: ${friendly_name}-temp-12
     id: ${friendly_name_id}_temp_12
     min_value: 30
     initial_value: 53.1
@@ -524,7 +524,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-12
+    name: ${friendly_name}-servopos-12
     id: ${friendly_name_id}_servopos_12
     min_value: 0
     initial_value: 49.5
@@ -534,7 +534,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-13
+    name: ${friendly_name}-temp-13
     id: ${friendly_name_id}_temp_13
     min_value: 30
     initial_value: 55.2
@@ -543,7 +543,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-13
+    name: ${friendly_name}-servopos-13
     id: ${friendly_name_id}_servopos_13
     min_value: 0
     initial_value: 54
@@ -553,7 +553,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-14
+    name: ${friendly_name}-temp-14
     id: ${friendly_name_id}_temp_14
     min_value: 30
     initial_value: 57.3
@@ -562,7 +562,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-14
+    name: ${friendly_name}-servopos-14
     id: ${friendly_name_id}_servopos_14
     min_value: 0
     initial_value: 58.5
@@ -572,7 +572,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-15
+    name: ${friendly_name}-temp-15
     id: ${friendly_name_id}_temp_15
     min_value: 30
     initial_value: 59.4
@@ -581,7 +581,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-15
+    name: ${friendly_name}-servopos-15
     id: ${friendly_name_id}_servopos_15
     min_value: 0
     initial_value: 63
@@ -591,7 +591,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-16
+    name: ${friendly_name}-temp-16
     id: ${friendly_name_id}_temp_16
     min_value: 30
     initial_value: 61.5
@@ -600,7 +600,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-16
+    name: ${friendly_name}-servopos-16
     id: ${friendly_name_id}_servopos_16
     min_value: 0
     initial_value: 67.5
@@ -610,7 +610,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-17
+    name: ${friendly_name}-temp-17
     id: ${friendly_name_id}_temp_17
     min_value: 30
     initial_value: 63.6
@@ -619,7 +619,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-17
+    name: ${friendly_name}-servopos-17
     id: ${friendly_name_id}_servopos_17
     min_value: 0
     initial_value: 72
@@ -629,7 +629,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-18
+    name: ${friendly_name}-temp-18
     id: ${friendly_name_id}_temp_18
     min_value: 30
     initial_value: 65.7
@@ -638,7 +638,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-18
+    name: ${friendly_name}-servopos-18
     id: ${friendly_name_id}_servopos_18
     min_value: 0
     initial_value: 76.5
@@ -648,7 +648,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-19
+    name: ${friendly_name}-temp-19
     id: ${friendly_name_id}_temp_19
     min_value: 30
     initial_value: 67.8
@@ -657,7 +657,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-19
+    name: ${friendly_name}-servopos-19
     id: ${friendly_name_id}_servopos_19
     min_value: 0
     initial_value: 81
@@ -667,7 +667,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-temp-20
+    name: ${friendly_name}-temp-20
     id: ${friendly_name_id}_temp_20
     min_value: 30
     initial_value: 70
@@ -676,7 +676,7 @@ number:
     optimistic: true
     restore_value: true
   - platform: template
-    name: controller-01-servopos-20
+    name: ${friendly_name}-servopos-20
     id: ${friendly_name_id}_servopos_20
     min_value: 0
     initial_value: 90
@@ -686,7 +686,7 @@ number:
     restore_value: true
 
   - platform: template
-    name: controller-01-servo-position
+    name: ${friendly_name}-servo-position
     id: ${friendly_name_id}_servo_position
     min_value: 0
     initial_value: 0
@@ -704,7 +704,7 @@ number:
 
 switch:
   - platform: template
-    name: controller-01-automation
+    name: ${friendly_name}automation
     id: ${friendly_name_id}_automation
     optimistic: true
     restore_mode: RESTORE_DEFAULT_ON
