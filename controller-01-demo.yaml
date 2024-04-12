@@ -2,7 +2,8 @@ esphome:
   name: controller-01-demo
   friendly_name: controller-01-demo
 
-substitutions:  
+substitutions:
+  friendly_name: controller-01
   friendly_name_id: controller_01_demo
 
 esp8266:
