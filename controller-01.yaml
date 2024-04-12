@@ -704,7 +704,7 @@ number:
 
 switch:
   - platform: template
-    name: ${friendly_name}automation
+    name: ${friendly_name}-automation
     id: ${friendly_name_id}_automation
     optimistic: true
     restore_mode: RESTORE_DEFAULT_ON
