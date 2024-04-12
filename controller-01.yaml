@@ -2,6 +2,10 @@ esphome:
   name: controller-01
   friendly_name: controller-01
 
+substitutions:
+  friendly_name: controller-01
+  friendly_name_id: controller_01
+
 esp8266:
   board: esp01_1m
   # board: d1_mini
@@ -29,17 +33,17 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Controller-01 Fallback Hotspot"
+    ssid: ${friendly_name}
     password: "1234567890"
 
 captive_portal:
     
 
-globals:
-   - id: last_position
-     type: float
-     restore_value: no
-     initial_value: '0'
+# globals:
+#    - id: last_position
+#      type: float
+#      restore_value: no
+#      initial_value: '0'
 
 servo:
   - id: my_servo
@@ -62,238 +66,238 @@ dallas:
 sensor:
   - platform: dallas
     address: 0xfb233c8209646128
-    name: controller-01 temperature
-    id: controller_01_temperature
+    name: ${friendly_name}temperature
+    id: ${friendly_name_id}_temperature
     filters:
-      - lambda: return x + id(dallas_lambda).state;
+      - lambda: return x + id(${friendly_name_id}_dallas_lambda).state;
     on_value:
       then:
         - lambda: |- 
              ESP_LOGW("","Now temperature %f °C", x);
     on_value_range:
       
-      - below: !lambda 'return id(controller_01_temp_01).state;'
+      - below: !lambda 'return id(${friendly_name_id}_temp_01).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_01).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_01).state;'
 
-      - above: !lambda 'return id(controller_01_temp_01).state;'
-        below: !lambda 'return id(controller_01_temp_02).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_01).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_02).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_02).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_02).state;'
 
-      - above: !lambda 'return id(controller_01_temp_02).state;'
-        below: !lambda 'return id(controller_01_temp_03).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_02).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_03).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_03).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_03).state;'
 
-      - above: !lambda 'return id(controller_01_temp_03).state;'
-        below: !lambda 'return id(controller_01_temp_04).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_03).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_04).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_04).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_04).state;'
 
-      - above: !lambda 'return id(controller_01_temp_04).state;'
-        below: !lambda 'return id(controller_01_temp_05).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_04).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_05).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_05).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_05).state;'
 
-      - above: !lambda 'return id(controller_01_temp_05).state;'
-        below: !lambda 'return id(controller_01_temp_06).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_05).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_06).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_06).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_06).state;'
 
-      - above: !lambda 'return id(controller_01_temp_06).state;'
-        below: !lambda 'return id(controller_01_temp_07).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_06).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_07).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_07).state;'
-      - above: !lambda 'return id(controller_01_temp_07).state;'
-        below: !lambda 'return id(controller_01_temp_08).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_07).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_07).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_08).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_08).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_08).state;'
 
-      - above: !lambda 'return id(controller_01_temp_08).state;'
-        below: !lambda 'return id(controller_01_temp_09).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_08).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_09).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_09).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_09).state;'
 
-      - above: !lambda 'return id(controller_01_temp_09).state;'
-        below: !lambda 'return id(controller_01_temp_10).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_09).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_10).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_10).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_10).state;'
 
-      - above: !lambda 'return id(controller_01_temp_11).state;'
-        below: !lambda 'return id(controller_01_temp_12).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_11).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_12).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_11).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_11).state;'
 
-      - above: !lambda 'return id(controller_01_temp_12).state;'
-        below: !lambda 'return id(controller_01_temp_13).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_12).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_13).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_12).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_12).state;'
 
-      - above: !lambda 'return id(controller_01_temp_13).state;'
-        below: !lambda 'return id(controller_01_temp_14).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_13).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_14).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_13).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_13).state;'
 
-      - above: !lambda 'return id(controller_01_temp_14).state;'
-        below: !lambda 'return id(controller_01_temp_15).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_14).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_15).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_13).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_13).state;'
 
-      - above: !lambda 'return id(controller_01_temp_15).state;'
-        below: !lambda 'return id(controller_01_temp_16).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_15).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_16).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_15).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_15).state;'
 
-      - above: !lambda 'return id(controller_01_temp_16).state;'
-        below: !lambda 'return id(controller_01_temp_17).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_16).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_17).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_16).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_16).state;'
 
-      - above: !lambda 'return id(controller_01_temp_17).state;'
-        below: !lambda 'return id(controller_01_temp_18).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_17).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_18).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_17).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_17).state;'
 
-      - above: !lambda 'return id(controller_01_temp_18).state;'
-        below: !lambda 'return id(controller_01_temp_19).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_18).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_19).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_18).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_18).state;'
 
-      - above: !lambda 'return id(controller_01_temp_19).state;'
-        below: !lambda 'return id(controller_01_temp_20).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_19).state;'
+        below: !lambda 'return id(${friendly_name_id}_temp_20).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_19).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_19).state;'
 
-      - above: !lambda 'return id(controller_01_temp_20).state;'
+      - above: !lambda 'return id(${friendly_name_id}_temp_20).state;'
         then:
           - if:
               condition:
-                lambda: 'return id(controller_01_automation).state;'
+                lambda: 'return id(${friendly_name_id}_automation).state;'
               then:
                 - number.set:
-                    id: controller_01_servo_position
-                    value: !lambda 'return id(controller_01_servopos_20).state;'
+                    id: ${friendly_name_id}_servo_position
+                    value: !lambda 'return id(${friendly_name_id}_servopos_20).state;'
 
 
 number:
   - platform: template
     name: controller-01-temperature-offset
-    id: dallas_lambda
+    id: ${friendly_name_id}_dallas_lambda
     min_value: -20
     initial_value: 0
     max_value: 20
@@ -303,7 +307,7 @@ number:
 
   - platform: template
     name: controller-01-temp-01
-    id: controller_01_temp_01
+    id: ${friendly_name_id}_temp_01
     min_value: 30
     initial_value: 30
     max_value: 70
@@ -312,7 +316,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-01
-    id: controller_01_servopos_01
+    id: ${friendly_name_id}_servopos_01
     min_value: 0
     initial_value: 0
     max_value: 180
@@ -322,7 +326,7 @@ number:
 
   - platform: template
     name: controller-01-temp-02
-    id: controller_01_temp_02
+    id: ${friendly_name_id}_temp_02
     min_value: 30
     initial_value: 32.1
     max_value: 70
@@ -331,7 +335,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-02
-    id: controller_01_servopos_02
+    id: ${friendly_name_id}_servopos_02
     min_value: 0
     initial_value: 4.5
     max_value: 180
@@ -341,7 +345,7 @@ number:
 
   - platform: template
     name: controller-01-temp-03
-    id: controller_01_temp_03
+    id: ${friendly_name_id}_temp_03
     min_value: 30
     initial_value: 34.2
     max_value: 70
@@ -350,7 +354,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-03
-    id: controller_01_servopos_03
+    id: ${friendly_name_id}_servopos_03
     min_value: 0
     initial_value: 9
     max_value: 180
@@ -360,7 +364,7 @@ number:
 
   - platform: template
     name: controller-01-temp-04
-    id: controller_01_temp_04
+    id: ${friendly_name_id}_temp_04
     min_value: 30
     initial_value: 36.3
     max_value: 70
@@ -369,7 +373,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-04
-    id: controller_01_servopos_04
+    id: ${friendly_name_id}_servopos_04
     min_value: 0
     initial_value: 13.5
     max_value: 180
@@ -379,7 +383,7 @@ number:
 
   - platform: template
     name: controller-01-temp-05
-    id: controller_01_temp_05
+    id: ${friendly_name_id}_temp_05
     min_value: 30
     initial_value: 38.4
     max_value: 70
@@ -388,7 +392,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-05
-    id: controller_01_servopos_05
+    id: ${friendly_name_id}_servopos_05
     min_value: 0
     initial_value: 18
     max_value: 180
@@ -398,7 +402,7 @@ number:
 
   - platform: template
     name: controller-01-temp-06
-    id: controller_01_temp_06
+    id: ${friendly_name_id}_temp_06
     min_value: 30
     initial_value: 40.5
     max_value: 70
@@ -407,7 +411,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-06
-    id: controller_01_servopos_06
+    id: ${friendly_name_id}_servopos_06
     min_value: 0
     initial_value: 22.5
     max_value: 180
@@ -417,7 +421,7 @@ number:
 
   - platform: template
     name: controller-01-temp-07
-    id: controller_01_temp_07
+    id: ${friendly_name_id}_temp_07
     min_value: 30
     initial_value: 42.6
     max_value: 70
@@ -426,7 +430,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-07
-    id: controller_01_servopos_07
+    id: ${friendly_name_id}_servopos_07
     min_value: 0
     initial_value: 27
     max_value: 180
@@ -436,7 +440,7 @@ number:
 
   - platform: template
     name: controller-01-temp-08
-    id: controller_01_temp_08
+    id: ${friendly_name_id}_temp_08
     min_value: 30
     initial_value: 44.7
     max_value: 70
@@ -445,7 +449,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-08
-    id: controller_01_servopos_08
+    id: ${friendly_name_id}_servopos_08
     min_value: 0
     initial_value: 31.5
     max_value: 180
@@ -455,7 +459,7 @@ number:
 
   - platform: template
     name: controller-01-temp-09
-    id: controller_01_temp_09
+    id: ${friendly_name_id}_temp_09
     min_value: 30
     initial_value: 46.8
     max_value: 70
@@ -464,7 +468,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-09
-    id: controller_01_servopos_09
+    id: ${friendly_name_id}_servopos_09
     min_value: 0
     initial_value: 36
     max_value: 180
@@ -474,7 +478,7 @@ number:
 
   - platform: template
     name: controller-01-temp-10
-    id: controller_01_temp_10
+    id: ${friendly_name_id}_temp_10
     min_value: 30
     initial_value: 48.9
     max_value: 70
@@ -483,7 +487,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-10
-    id: controller_01_servopos_10
+    id: ${friendly_name_id}_servopos_10
     min_value: 0
     initial_value: 40.5
     max_value: 180
@@ -493,7 +497,7 @@ number:
 
   - platform: template
     name: controller-01-temp-11
-    id: controller_01_temp_11
+    id: ${friendly_name_id}_temp_11
     min_value: 30
     initial_value: 51
     max_value: 70
@@ -502,7 +506,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-11
-    id: controller_01_servopos_11
+    id: ${friendly_name_id}_servopos_11
     min_value: 0
     initial_value: 45
     max_value: 180
@@ -512,7 +516,7 @@ number:
 
   - platform: template
     name: controller-01-temp-12
-    id: controller_01_temp_12
+    id: ${friendly_name_id}_temp_12
     min_value: 30
     initial_value: 53.1
     max_value: 70
@@ -521,7 +525,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-12
-    id: controller_01_servopos_12
+    id: ${friendly_name_id}_servopos_12
     min_value: 0
     initial_value: 49.5
     max_value: 180
@@ -531,7 +535,7 @@ number:
 
   - platform: template
     name: controller-01-temp-13
-    id: controller_01_temp_13
+    id: ${friendly_name_id}_temp_13
     min_value: 30
     initial_value: 55.2
     max_value: 70
@@ -540,7 +544,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-13
-    id: controller_01_servopos_13
+    id: ${friendly_name_id}_servopos_13
     min_value: 0
     initial_value: 54
     max_value: 180
@@ -550,7 +554,7 @@ number:
 
   - platform: template
     name: controller-01-temp-14
-    id: controller_01_temp_14
+    id: ${friendly_name_id}_temp_14
     min_value: 30
     initial_value: 57.3
     max_value: 70
@@ -559,7 +563,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-14
-    id: controller_01_servopos_14
+    id: ${friendly_name_id}_servopos_14
     min_value: 0
     initial_value: 58.5
     max_value: 180
@@ -569,7 +573,7 @@ number:
 
   - platform: template
     name: controller-01-temp-15
-    id: controller_01_temp_15
+    id: ${friendly_name_id}_temp_15
     min_value: 30
     initial_value: 59.4
     max_value: 70
@@ -578,7 +582,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-15
-    id: controller_01_servopos_15
+    id: ${friendly_name_id}_servopos_15
     min_value: 0
     initial_value: 63
     max_value: 180
@@ -588,7 +592,7 @@ number:
 
   - platform: template
     name: controller-01-temp-16
-    id: controller_01_temp_16
+    id: ${friendly_name_id}_temp_16
     min_value: 30
     initial_value: 61.5
     max_value: 70
@@ -597,7 +601,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-16
-    id: controller_01_servopos_16
+    id: ${friendly_name_id}_servopos_16
     min_value: 0
     initial_value: 67.5
     max_value: 180
@@ -607,7 +611,7 @@ number:
 
   - platform: template
     name: controller-01-temp-17
-    id: controller_01_temp_17
+    id: ${friendly_name_id}_temp_17
     min_value: 30
     initial_value: 63.6
     max_value: 70
@@ -616,7 +620,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-17
-    id: controller_01_servopos_17
+    id: ${friendly_name_id}_servopos_17
     min_value: 0
     initial_value: 72
     max_value: 180
@@ -626,7 +630,7 @@ number:
 
   - platform: template
     name: controller-01-temp-18
-    id: controller_01_temp_18
+    id: ${friendly_name_id}_temp_18
     min_value: 30
     initial_value: 65.7
     max_value: 70
@@ -635,7 +639,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-18
-    id: controller_01_servopos_18
+    id: ${friendly_name_id}_servopos_18
     min_value: 0
     initial_value: 76.5
     max_value: 180
@@ -645,7 +649,7 @@ number:
 
   - platform: template
     name: controller-01-temp-19
-    id: controller_01_temp_19
+    id: ${friendly_name_id}_temp_19
     min_value: 30
     initial_value: 67.8
     max_value: 70
@@ -654,7 +658,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-19
-    id: controller_01_servopos_19
+    id: ${friendly_name_id}_servopos_19
     min_value: 0
     initial_value: 81
     max_value: 180
@@ -664,7 +668,7 @@ number:
 
   - platform: template
     name: controller-01-temp-20
-    id: controller_01_temp_20
+    id: ${friendly_name_id}_temp_20
     min_value: 30
     initial_value: 70
     max_value: 70
@@ -673,7 +677,7 @@ number:
     restore_value: true
   - platform: template
     name: controller-01-servopos-20
-    id: controller_01_servopos_20
+    id: ${friendly_name_id}_servopos_20
     min_value: 0
     initial_value: 90
     max_value: 180
@@ -683,7 +687,7 @@ number:
 
   - platform: template
     name: controller-01-servo-position
-    id: controller_01_servo_position
+    id: ${friendly_name_id}_servo_position
     min_value: 0
     initial_value: 0
     max_value: 180
@@ -701,6 +705,6 @@ number:
 switch:
   - platform: template
     name: controller-01-automation
-    id: controller_01_automation
+    id: ${friendly_name_id}_automation
     optimistic: true
     restore_mode: RESTORE_DEFAULT_ON
